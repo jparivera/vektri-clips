@@ -1,0 +1,354 @@
+{
+  "$defs": {
+    "Audio": {
+      "additionalProperties": false,
+      "properties": {
+        "normalize": {
+          "default": false,
+          "title": "Normalize",
+          "type": "boolean"
+        },
+        "fade": {
+          "default": 0,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Fade",
+          "type": "number"
+        },
+        "stream_index": {
+          "default": 0,
+          "maximum": 31,
+          "minimum": 0,
+          "title": "Stream Index",
+          "type": "integer"
+        }
+      },
+      "title": "Audio",
+      "type": "object"
+    },
+    "Captions": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": true,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "burn_in": {
+          "default": false,
+          "title": "Burn In",
+          "type": "boolean"
+        },
+        "style": {
+          "default": "clean",
+          "enum": [
+            "clean",
+            "boxed",
+            "accent"
+          ],
+          "title": "Style",
+          "type": "string"
+        },
+        "font_size": {
+          "default": 42,
+          "maximum": 100,
+          "minimum": 12,
+          "title": "Font Size",
+          "type": "integer"
+        },
+        "margin": {
+          "default": 100,
+          "maximum": 400,
+          "minimum": 10,
+          "title": "Margin",
+          "type": "integer"
+        },
+        "alignment": {
+          "default": 2,
+          "enum": [
+            1,
+            2,
+            3,
+            7,
+            8,
+            9
+          ],
+          "title": "Alignment",
+          "type": "integer"
+        },
+        "background": {
+          "default": false,
+          "title": "Background",
+          "type": "boolean"
+        },
+        "highlight": {
+          "default": false,
+          "title": "Highlight",
+          "type": "boolean"
+        },
+        "font_family": {
+          "default": "DejaVu Sans",
+          "enum": [
+            "DejaVu Sans",
+            "DejaVu Serif",
+            "DejaVu Sans Mono"
+          ],
+          "title": "Font Family",
+          "type": "string"
+        },
+        "color": {
+          "default": "#FFFFFF",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "title": "Color",
+          "type": "string"
+        },
+        "highlight_color": {
+          "default": "#D3EC78",
+          "pattern": "^#[0-9a-fA-F]{6}$",
+          "title": "Highlight Color",
+          "type": "string"
+        },
+        "stroke_width": {
+          "default": 2,
+          "maximum": 8,
+          "minimum": 0,
+          "title": "Stroke Width",
+          "type": "number"
+        },
+        "words": {
+          "items": {
+            "$ref": "#/$defs/Word"
+          },
+          "maxItems": 100000,
+          "title": "Words",
+          "type": "array"
+        }
+      },
+      "title": "Captions",
+      "type": "object"
+    },
+    "Crop": {
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "default": "fit",
+          "enum": [
+            "fit",
+            "crop",
+            "split"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "x": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Y",
+          "type": "number"
+        },
+        "zoom": {
+          "default": 1,
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Zoom",
+          "type": "number"
+        },
+        "second_x": {
+          "default": 0.75,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Second X",
+          "type": "number"
+        },
+        "keyframes": {
+          "items": {
+            "$ref": "#/$defs/Keyframe"
+          },
+          "maxItems": 2000,
+          "title": "Keyframes",
+          "type": "array"
+        }
+      },
+      "title": "Crop",
+      "type": "object"
+    },
+    "Keyframe": {
+      "additionalProperties": false,
+      "properties": {
+        "time": {
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Time",
+          "type": "number"
+        },
+        "x": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "default": 0.5,
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "time"
+      ],
+      "title": "Keyframe",
+      "type": "object"
+    },
+    "Output": {
+      "additionalProperties": false,
+      "properties": {
+        "width": {
+          "default": 720,
+          "maximum": 1920,
+          "minimum": 144,
+          "multipleOf": 2,
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "default": 1280,
+          "maximum": 1920,
+          "minimum": 144,
+          "multipleOf": 2,
+          "title": "Height",
+          "type": "integer"
+        },
+        "fps": {
+          "default": 30,
+          "maximum": 60,
+          "minimum": 12,
+          "title": "Fps",
+          "type": "integer"
+        },
+        "crf": {
+          "default": 22,
+          "maximum": 32,
+          "minimum": 16,
+          "title": "Crf",
+          "type": "integer"
+        }
+      },
+      "title": "Output",
+      "type": "object"
+    },
+    "Segment": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "pattern": "^[a-zA-Z0-9_-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "start": {
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Start",
+          "type": "number"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "End",
+          "type": "number"
+        },
+        "crop": {
+          "$ref": "#/$defs/Crop"
+        },
+        "gain_db": {
+          "default": 0,
+          "maximum": 12,
+          "minimum": -40,
+          "title": "Gain Db",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "start",
+        "end"
+      ],
+      "title": "Segment",
+      "type": "object"
+    },
+    "Word": {
+      "additionalProperties": false,
+      "properties": {
+        "word": {
+          "maxLength": 500,
+          "minLength": 1,
+          "title": "Word",
+          "type": "string"
+        },
+        "start": {
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Start",
+          "type": "number"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "End",
+          "type": "number"
+        }
+      },
+      "required": [
+        "word",
+        "start",
+        "end"
+      ],
+      "title": "Word",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "segments": {
+      "items": {
+        "$ref": "#/$defs/Segment"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Segments",
+      "type": "array"
+    },
+    "output": {
+      "$ref": "#/$defs/Output"
+    },
+    "captions": {
+      "$ref": "#/$defs/Captions"
+    },
+    "audio": {
+      "$ref": "#/$defs/Audio"
+    }
+  },
+  "required": [
+    "segments"
+  ],
+  "title": "Timeline",
+  "type": "object"
+}

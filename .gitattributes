@@ -1,0 +1,5 @@
+# Preserve third-party notices byte for byte, including original line endings.
+docs/licenses/** -text -whitespace
+backend/clipstudio/vendor/** -text -whitespace
+fixtures/NOTICE-* -text -whitespace
+frontend/public/third-party-notices.txt -text -whitespace

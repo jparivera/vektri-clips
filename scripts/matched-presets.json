@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "frozen_at_utc": "2026-11-03T07:48:48.939465+00:00",
+  "model_scores_observed_before_preset": false,
+  "rationale": "Window durations chosen solely from frozen annotated action spans, before the preset author observed any model scores. Identical requested options across CLIP and X-CLIP. No post-score tuning.",
+  "presets": {
+    "basketball": {
+      "source_sha256": "a0efebc2a31a793b70cb80e8c7fcff610658df6818f734d2e8ff2af0b0edb845",
+      "annotations_sha256": "3cdfdd59d75f7ce528f33619a67e749977919a4ed08bf03f0dc48028ce669019",
+      "provenance_sha256": "c3194c668dd065913cab991c4785eb7352a1f593c2ddb51146046548db73d8da",
+      "query_ids": [
+        "overhead_ball_state",
+        "white_jump_shot",
+        "receive_then_shoot",
+        "absent_dunk"
+      ],
+      "selection_reason": "The receive-then-shoot reference spans2.9s; a3s fixed window can contain all phases. Brief standalone actions will occupy a small fraction of that window, which the report exposes.",
+      "options": {
+        "genre": "action",
+        "mode": "local",
+        "visual_search": true,
+        "transcribe": false,
+        "min_length": 3,
+        "max_length": 3,
+        "target_count": 3,
+        "min_separation": 2,
+        "exclusions": [],
+        "use_feedback": false
+      }
+    },
+    "handwashing": {
+      "source_sha256": "b6afe16e598ec730d92185308220298f48a0b0865f7bacb39f5d34eecd61bbf3",
+      "annotations_sha256": "9c374fcaf1011a888d3ec7850b6fadda2859dc5612e33a904822cb5fb1c15216",
+      "provenance_sha256": "bf2d59bc83b112e3b523144bf8c84c30a220ced6c4022a3e4de4d43cf8230d31",
+      "query_ids": [
+        "foamy_hands",
+        "hands_under_running_water",
+        "paper_towel_drying",
+        "rinse_then_dry",
+        "towel_on_door_handle",
+        "absent_toothbrushing"
+      ],
+      "selection_reason": "The rinse-then-dry reference spans8.7s; a9s fixed window can contain all phases. An8s window could never cover that full reference. Other handwashing queries use the same fixed duration for this source.",
+      "options": {
+        "genre": "tutorial",
+        "mode": "local",
+        "visual_search": true,
+        "transcribe": false,
+        "min_length": 9,
+        "max_length": 9,
+        "target_count": 3,
+        "min_separation": 2,
+        "exclusions": [],
+        "use_feedback": false
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+name: Verify source
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.11'
+      - name: Install system media dependencies
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg fonts-dejavu-core
+      - run: uv sync --locked --extra dev
+      - name: Generate and verify original synthetic fixtures
+        run: |
+          uv run --locked python scripts/generate_fixtures.py
+          uv run --locked python scripts/generate_fixtures.py --verify
+      - name: Run backend tests (model-dependent tests skip without assets)
+        run: uv run --locked python -m pytest -q
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+      - working-directory: frontend
+        run: npm ci
+      - working-directory: frontend
+        run: npm run build
+      - working-directory: frontend
+        run: node --experimental-strip-types --test ../tests/*.test.ts
+      - working-directory: frontend
+        run: npx playwright install --with-deps chromium
+      - name: Serve built UI with no runtime media library
+        run: |
+          python3 -m http.server 8741 --bind 127.0.0.1 --directory frontend/dist > /tmp/clip-studio-static.log 2>&1 &
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://127.0.0.1:8741/ > /dev/null; then exit 0; fi
+            sleep 1
+          done
+          exit 1
+      - name: Test controlled browser lifecycle (API and media simulated)
+        working-directory: frontend
+        run: npx playwright test browser-grounded-review.spec.ts browser-ui-state.spec.ts

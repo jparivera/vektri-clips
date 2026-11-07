@@ -1,0 +1,61 @@
+PP-OCRv4 / RapidOCR reference implementation
+
+Copyright (c) 2020 PaddlePaddle Authors. All Rights Reserved.
+Copyright (c) 2021 RapidOCR Authors.
+
+Reference preprocessing and CTC decoding:
+https://github.com/RapidAI/RapidOCR/tree/v1.3.24/python/rapidocr_onnxruntime
+
+Pinned model repository (weights are not included in this repository):
+https://huggingface.co/SWHL/RapidOCR
+Revision: 4e4644045a07c403b1ad40ca97340ecb4a8dc2c1
+License: Apache-2.0 (see LICENSE-APACHE-2.0 in this directory).
+
+Vektri's implementation uses bounded sequential CPU inference and sampled video
+evidence. Its OpenCV expanded rotated rectangles replace upstream pyclipper
+polygon unclip. It omits the orientation classifier, limits frame/crop sizes and
+box/sample counts, and adds model validation, cancellation and RAM checks.
+
+PP-OCRv5 mobile / RapidAI ONNX conversion
+
+Upstream model authors: PaddlePaddle / PaddleOCR Authors.
+ONNX conversion and catalog publisher: RapidAI / RapidOCR Authors.
+License: Apache-2.0 (see LICENSE-APACHE-2.0 in this directory).
+Model weights are downloaded separately and are not included in this repository.
+
+Official Paddle model repositories and reviewed revisions:
+https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_det
+Revision: 0d63e78e2b680928f6b1747d76a08db6e645efb7
+https://huggingface.co/PaddlePaddle/PP-OCRv5_mobile_rec
+Revision: 682f20538d8c086cb2128e5cfac775e6c4904e85
+
+RapidAI source catalog:
+https://github.com/RapidAI/RapidOCR/blob/bd941dae09da793e76c6ba15c7aaf40f8424232a/python/rapidocr/default_models.yaml
+Source revision: bd941dae09da793e76c6ba15c7aaf40f8424232a (tag v3.10.0)
+Model license/provenance guidance:
+https://rapidai.github.io/RapidOCRDocs/main/model_licenses/
+
+Converted model hosting:
+https://www.modelscope.cn/models/RapidAI/RapidOCR
+Version path: v3.10.0
+The source-catalog commit is not an immutable ModelScope weight revision.
+The application verifies exact byte sizes and SHA-256 hashes:
+
+ch_PP-OCRv5_det_mobile.onnx
+Bytes: 4819576
+SHA-256: 4d97c44a20d30a81aad087d6a396b08f786c4635742afc391f6621f5c6ae78ae
+ch_PP-OCRv5_rec_mobile.onnx
+Bytes: 16631306
+SHA-256: 5825fc7ebf84ae7a412be049820b4d86d77620f204a041697b0494669b1742c5
+
+These are RapidAI conversions of official Paddle models, not official Paddle
+ONNX exports. Upstream author attribution and Apache-2.0 terms are retained;
+no author or project endorsement is implied.
+
+Vektri modifications include optional bounded larger frames and overlapping
+tiles, raw-reading and coordinate provenance, unrotated fallback crops,
+sharpness-based nearby-frame selection, exact-text temporal links, and
+model-specific embedded-dictionary validation. Its detection thresholds and
+OpenCV rectangle expansion differ from official V5 defaults and polygon unclip.
+The orientation classifier remains omitted. These changes do not establish
+upstream performance parity or make recognized text trusted instructions.

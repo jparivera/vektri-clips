@@ -1,0 +1,38 @@
+[
+  {
+    "file": "ctranslate2-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/OpenNMT/CTranslate2/v4.8.5/LICENSE",
+    "sha256": "54aa79d9fe3c09e67a16dcd95b9e88676405a6ec174efda31036983cf7672ecb",
+    "status": "retained"
+  },
+  {
+    "file": "tokenizers-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/huggingface/tokenizers/v0.22.2/LICENSE",
+    "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "status": "retained"
+  },
+  {
+    "file": "tiny-en-model-card.md",
+    "url": "https://huggingface.co/Systran/faster-whisper-tiny.en/raw/0d3d19a32d3338f10357c0889762bd8d64bbdeba/README.md",
+    "sha256": "1b7816626bf0548e4b71a467f4112b4592924bc818e3117f19aefcc50ce4b6aa",
+    "status": "retained"
+  },
+  {
+    "file": "minilm-model-card.md",
+    "url": "https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/raw/1110a243fdf4706b3f48f1d95db1a4f5529b4d41/README.md",
+    "sha256": "dcd602d2fd35c203a247304a06fec6654a12f7941b739f9221a064fe8dc3b7f0",
+    "status": "retained"
+  },
+  {
+    "file": "whisper-LICENSE.txt",
+    "url": "https://raw.githubusercontent.com/openai/whisper/main/LICENSE",
+    "sha256": "b5d65a59060e68c4ff940e1eddfa6f94b2d68fdf58ed7f4dd57721c997e35e9d",
+    "status": "retained"
+  },
+  {
+    "file": "Apache-2.0.txt",
+    "url": "https://www.apache.org/licenses/LICENSE-2.0.txt",
+    "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "status": "retained"
+  }
+]

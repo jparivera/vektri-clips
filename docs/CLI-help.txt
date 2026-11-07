@@ -1,0 +1,41 @@
+usage: clipstudio [-h]
+                  {serve,worker,mcp,capabilities,projects,project,import,import-url,analyze,transcribe,timeline,render,exports,jobs,job,cancel,retry,evidence,candidates,agent-submit,publication-draft,batch-render,download-model,backup,restore,storage}
+                  ...
+
+Vektri Clip Studio v1 local API/CLI. JSON output. No accounts or publishing
+configured.
+
+positional arguments:
+  {serve,worker,mcp,capabilities,projects,project,import,import-url,analyze,transcribe,timeline,render,exports,jobs,job,cancel,retry,evidence,candidates,agent-submit,publication-draft,batch-render,download-model,backup,restore,storage}
+    serve               Run loopback API and one durable worker; Ctrl-C stops
+                        both
+    worker              Run only the durable worker
+    mcp                 Local MCP evidence bridge; no external agent is
+                        connected
+    capabilities        Inspect local models and real integration status
+    projects            List searchable projects
+    project             Inspect a project
+    import              Copy an intentionally supplied local file; original
+                        remains untouched
+    import-url          Queue a bounded public direct media download; platform
+                        pages unsupported
+    analyze             Local model analysis or explicitly heuristic-only
+                        analysis
+    transcribe          Queue genuine offline Whisper ASR
+    timeline            Save versioned timeline JSON with optimistic revision
+    render              Queue exact timeline revision for verified export
+    exports             List completed verified exports
+    jobs                Inspect durable job queue
+    agent-submit        Validate timestamped proposals bound to an evidence
+                        packet
+    publication-draft   Prepare a manual-upload draft; never posts
+    batch-render        Bounded <=20 per-item render requests from JSON
+    download-model      Explicit cancelable pinned model download; inspect
+                        capabilities for bytes first
+    backup              Full verified backup, including originals; stop app
+                        and finish jobs first
+    restore             Restore safely into a new directory only
+    storage             Inspect storage without deleting anything
+
+options:
+  -h, --help            show this help message and exit

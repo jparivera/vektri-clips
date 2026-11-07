@@ -1,0 +1,117 @@
+{
+  "$defs": {
+    "Candidate": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 80,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "start": {
+          "maximum": 86400,
+          "minimum": 0,
+          "title": "Start",
+          "type": "number"
+        },
+        "end": {
+          "exclusiveMinimum": 0,
+          "maximum": 86400,
+          "title": "End",
+          "type": "number"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "rationale": {
+          "maxLength": 3000,
+          "title": "Rationale",
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "additionalProperties": true,
+            "type": "object"
+          },
+          "maxItems": 100,
+          "title": "Evidence",
+          "type": "array"
+        },
+        "confidence": {
+          "maximum": 1,
+          "minimum": 0,
+          "title": "Confidence",
+          "type": "number"
+        },
+        "uncertainty": {
+          "maxLength": 3000,
+          "title": "Uncertainty",
+          "type": "string"
+        },
+        "scores": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Scores",
+          "type": "object"
+        },
+        "method": {
+          "maxLength": 100,
+          "title": "Method",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id",
+        "start",
+        "end",
+        "title",
+        "rationale",
+        "confidence",
+        "uncertainty",
+        "method"
+      ],
+      "title": "Candidate",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1,
+      "default": 1,
+      "title": "Schema Version",
+      "type": "integer"
+    },
+    "packet_fingerprint": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Packet Fingerprint",
+      "type": "string"
+    },
+    "agent_name": {
+      "maxLength": 80,
+      "minLength": 1,
+      "title": "Agent Name",
+      "type": "string"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/Candidate"
+      },
+      "maxItems": 30,
+      "title": "Candidates",
+      "type": "array"
+    }
+  },
+  "required": [
+    "packet_fingerprint",
+    "agent_name",
+    "candidates"
+  ],
+  "title": "AgentDecisions",
+  "type": "object"
+}

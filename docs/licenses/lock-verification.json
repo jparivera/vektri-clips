@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-03",
+  "javascript_lock_entries": 71,
+  "javascript_installed": 29,
+  "javascript_new_or_changed": [
+    [
+      "prettier",
+      "3.9.10",
+      "MIT"
+    ]
+  ],
+  "python_installed_count": 46,
+  "python_lock_count": 48,
+  "python_inventory_mismatch": {},
+  "python_inventory_stale": {},
+  "python_lock_installed_mismatch": {},
+  "python_locked_not_installed": {
+    "colorama": "0.4.6",
+    "pyreadline3": "3.5.6"
+  },
+  "lock_sha256": {
+    "uv.lock": "68b44237e39c10815b4f064c6e5d7a008c2f636cb6d8cf42cedc4156a306f289",
+    "frontend/package-lock.json": "4f06db1262a3604e6936ac068d8e576396b3f2458b34a07a2a583acb45009041"
+  }
+}

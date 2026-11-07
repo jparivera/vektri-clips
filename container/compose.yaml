@@ -1,0 +1,17 @@
+services:
+  studio:
+    build:
+      context: ..
+      dockerfile: container/Dockerfile
+    network_mode: host
+    init: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - clip-studio-data:/data
+    environment:
+      VEKTRI_DATA_DIR: /data
+      VEKTRI_PORT: "8741"
+    restart: "no"
+volumes:
+  clip-studio-data:

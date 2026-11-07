@@ -1,0 +1,16 @@
+.git
+.venv
+data
+models
+research
+evidence
+.env*
+frontend/node_modules
+frontend/dist
+frontend/evidence
+**/__pycache__
+fixtures/*.mp4
+fixtures/*.wav
+fixtures/*.mkv
+fixtures/*.mov
+fixtures/*.webm
